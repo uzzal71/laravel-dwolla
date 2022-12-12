@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DwollaSwagger;
+
 class CustomerController extends Controller
 {
     /**
@@ -28,12 +30,16 @@ class CustomerController extends Controller
 
         // For Sandbox
         $apiClient = new DwollaSwagger\ApiClient("https://api-sandbox.dwolla.com");
+        // For production
+        // $apiClient = new DwollaSwagger\ApiClient("https://api.dwolla.com");
+
+        $tokensApi = new DwollaSwagger\TokensApi($apiClient);
+        $appToken = $tokensApi->token();
+
+        DwollaSwagger\Configuration::$access_token = $appToken->access_token;
 
         $customersApi = new DwollaSwagger\CustomersApi($apiClient);
-
-        $customers = $customersApi->_list(10, 0);
-        
-        return $customers;
+        $myCusties = $customersApi->_list(10);
 
         return view('customer.index');
     }
