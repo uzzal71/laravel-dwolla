@@ -41,6 +41,24 @@ class CustomerController extends Controller
         $customersApi = new DwollaSwagger\CustomersApi($apiClient);
         $myCusties = $customersApi->_list(10);
 
+        // $customerUrl = 'https://api-sandbox.dwolla.com/customers/6a82d92f-e262-4ff9-bb27-aedc32e7904e';
+        // $retryCustomer = $customersApi->updateCustomer(array (
+        // 'firstName' => 'Nasir',
+        // 'lastName' => 'Uddin',
+        // 'email' => 'nasiruddin@nomail.net',
+        // 'ipAddress' => '10.10.10.10',
+        // 'type' => 'personal',
+        // 'address1' => '221 Corrected Address St.',
+        // 'address2' => 'Fl 8',
+        // 'city' => 'Ridgewood',
+        // 'state' => 'NY',
+        // 'postalCode' => '11385',
+        // 'dateOfBirth' => '1990-07-11',
+        // 'ssn' => '202-99-1516',
+        // ), $customerUrl);
+
+        // print($retryCustomer->id); # => 6a82d92f-e262-4ff9-bb27-aedc32e7904e
+
         return view('customer.index');
     }
 }
